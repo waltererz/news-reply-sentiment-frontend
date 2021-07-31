@@ -1,0 +1,64 @@
+@import url(https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Nanum+Gothic:wght@400;700;800&display=swap);
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: #ffffff;
+  font-family: "Nanum Gothic";
+  color: #333333;
+  font-size: 0.8rem;
+}
+
+.j2kb .header-navigation {
+  padding: 0px 10px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #dddddd;
+  box-shadow: none;
+  color: #333333;
+}
+.j2kb .header-navigation .header-title {
+  flex-grow: 1;
+  font-family: "Noto Sans KR";
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.j2kb .j2kb-container {
+  margin-top: calc(65px + 10px);
+  padding: 0px;
+}
+.j2kb .j2kb-container .inner-container {
+  flex-direction: row;
+}
+.j2kb .j2kb-container .inner-container .ls {
+  flex-grow: 0;
+  box-sizing: border-box;
+}
+.j2kb .j2kb-container .inner-container .rs {
+  flex-grow: 1;
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 0px) {
+  .j2kb .header-navigation {
+    height: 65px;
+    min-height: 65px;
+  }
+  .j2kb .header-navigation .header-toolbar {
+    height: 65px;
+    min-height: 65px;
+  }
+
+  .j2kb .j2kb-container .inner-container .ls {
+    display: none;
+  }
+  .j2kb .j2kb-container .inner-container .rs {
+    padding: 0px 10px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .j2kb .j2kb-container .inner-container .ls {
+    display: block;
+    min-width: 300px;
+    padding: 0px 0px 0px 10px;
+  }
+}

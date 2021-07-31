@@ -1,0 +1,125 @@
+$max-width: 450px;
+
+.user-login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .form-title {
+        text-align: center;
+        font-size: 1.5em;
+    }
+
+    .form-contents {
+        width: 100%;
+        max-width: $max-width;
+
+        .input {
+            margin-bottom: 15px;
+        }
+    }
+
+    .social-login {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: $max-width;
+        margin: 10px 0px 30px 0px;
+
+        .social-title {
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .item {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 50px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            align-items: center;
+            border-radius: 4px;
+            cursor: pointer;
+
+            &:last-child {
+                margin-bottom: 0px;
+            }
+
+            .icon {
+                width: 50px;
+                height: 30px;
+                flex-grow: 0;
+                flex-shrink: 0;
+                box-sizing: border-box;
+                border-right: 1px solid rgba(245, 245, 245, 0.3);
+                padding: 3px 0px;
+                text-align: center;
+
+                svg {
+                    width: 1em;
+                    height: 1em;
+                    display: inline-block;
+                    font-size: 1.5rem;
+                    flex-shrink: 0;
+                    user-select: none;
+                }
+            }
+
+            .text {
+                flex-grow: 1;
+                font-size: 1.1em;
+                font-weight: bold;
+                box-sizing: border-box;
+                padding-left: 15px;
+                color: #444444;
+            }
+
+            .icon,
+            .text {
+                color: #ffffff;
+            }
+
+            &.facebook {
+                background-color: rgba(24, 119, 242, 0.8);
+
+                &:hover {
+                    background-color: rgba(24, 119, 242, 1);
+                }
+            }
+
+            &.twitter {
+                background-color: rgba(26, 145, 218, 0.8);
+
+                &:hover {
+                    background-color: rgba(26, 145, 218, 1);
+                }
+            }
+
+            &.naver {
+                background-color: rgba(3, 199, 90, 0.8);
+
+                &:hover {
+                    background-color: rgba(3, 199, 90, 1);
+                }
+            }
+
+            &.kakao {
+                background-color: rgba(255, 205, 0, 0.8);
+
+                &:hover {
+                    background-color: rgba(255, 205, 0, 1);
+                }
+            }
+
+            &.google {
+                background-color: rgba(234, 67, 53, 0.9);
+
+                &:hover {
+                    background-color: rgba(234, 67, 53, 1);
+                }
+            }
+        }
+    }
+}
