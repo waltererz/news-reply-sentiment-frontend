@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px,
+);
+
+@import '~bootstrap/scss/bootstrap';
+
+.j2kb-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+
+    .inner-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .summary {
+            width: 100%;
+            margin-bottom: 30px;
+            background-color: #aaaaaa;
+            border-radius: 6px;
+        }
+
+        .buttons {
+            text-align: center;
+
+            a.btn {
+                width: 150px;
+
+                &:first-child {
+                    margin-right: 20px;
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(xs) {
+    .j2kb-container {
+        .inner-container {
+            .summary {
+                height: 250px;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .j2kb-container {
+        .inner-container {
+            max-width: 500px;
+
+            .summary {
+                height: 400px;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .j2kb-container {
+        .inner-container {
+            max-width: 700px;
+        }
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    .j2kb-container {
+        .inner-container {
+            max-width: 900px;
+        }
+    }
+}

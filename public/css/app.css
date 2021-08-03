@@ -8,6 +8,11 @@ body {
   font-size: 0.8rem;
 }
 
+a {
+  text-decoration: none;
+  color: initial;
+}
+
 .j2kb .header-navigation {
   padding: 0px 10px;
   background-color: #ffffff;
@@ -46,6 +51,7 @@ body {
   .j2kb .header-navigation .header-toolbar {
     height: 65px;
     min-height: 65px;
+    padding: 0px;
   }
 
   .j2kb .j2kb-container .inner-container .ls {

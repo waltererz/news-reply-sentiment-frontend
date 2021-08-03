@@ -2160,6 +2160,753 @@ var weakMemoize = function weakMemoize(func) {
 
 /***/ }),
 
+/***/ "./node_modules/@material-ui/core/Accordion/Accordion.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@material-ui/core/Accordion/Accordion.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-is */ "./node_modules/react-is/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var _material_ui_utils__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @material-ui/utils */ "./node_modules/@material-ui/utils/esm/chainPropTypes.js");
+/* harmony import */ var _material_ui_unstyled__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/unstyled */ "./node_modules/@material-ui/unstyled/composeClasses/composeClasses.js");
+/* harmony import */ var _styles_styled__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../styles/styled */ "./node_modules/@material-ui/core/styles/styled.js");
+/* harmony import */ var _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../styles/useThemeProps */ "./node_modules/@material-ui/core/styles/useThemeProps.js");
+/* harmony import */ var _Collapse__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../Collapse */ "./node_modules/@material-ui/core/Collapse/Collapse.js");
+/* harmony import */ var _Paper__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../Paper */ "./node_modules/@material-ui/core/Paper/Paper.js");
+/* harmony import */ var _AccordionContext__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./AccordionContext */ "./node_modules/@material-ui/core/Accordion/AccordionContext.js");
+/* harmony import */ var _utils_useControlled__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../utils/useControlled */ "./node_modules/@material-ui/core/utils/useControlled.js");
+/* harmony import */ var _accordionClasses__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./accordionClasses */ "./node_modules/@material-ui/core/Accordion/accordionClasses.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+const _excluded = ["children", "className", "defaultExpanded", "disabled", "disableGutters", "expanded", "onChange", "square", "TransitionComponent", "TransitionProps"];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const useUtilityClasses = styleProps => {
+  const {
+    classes,
+    square,
+    expanded,
+    disabled,
+    disableGutters
+  } = styleProps;
+  const slots = {
+    root: ['root', !square && 'rounded', expanded && 'expanded', disabled && 'disabled', !disableGutters && 'gutters'],
+    region: ['region']
+  };
+  return (0,_material_ui_unstyled__WEBPACK_IMPORTED_MODULE_7__.default)(slots, _accordionClasses__WEBPACK_IMPORTED_MODULE_8__.getAccordionUtilityClass, classes);
+};
+
+const AccordionRoot = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_9__.default)(_Paper__WEBPACK_IMPORTED_MODULE_10__.default, {
+  name: 'MuiAccordion',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const {
+      styleProps
+    } = props;
+    return [{
+      [`& .${_accordionClasses__WEBPACK_IMPORTED_MODULE_8__.default.region}`]: styles.region
+    }, styles.root, !styleProps.square && styles.rounded, !styleProps.disableGutters && styles.gutters];
+  }
+})(({
+  theme
+}) => {
+  const transition = {
+    duration: theme.transitions.duration.shortest
+  };
+  return {
+    position: 'relative',
+    transition: theme.transitions.create(['margin'], transition),
+    overflowAnchor: 'none',
+    // Keep the same scrolling position
+    '&:before': {
+      position: 'absolute',
+      left: 0,
+      top: -1,
+      right: 0,
+      height: 1,
+      content: '""',
+      opacity: 1,
+      backgroundColor: theme.palette.divider,
+      transition: theme.transitions.create(['opacity', 'background-color'], transition)
+    },
+    '&:first-of-type': {
+      '&:before': {
+        display: 'none'
+      }
+    },
+    [`&.${_accordionClasses__WEBPACK_IMPORTED_MODULE_8__.default.expanded}`]: {
+      '&:before': {
+        opacity: 0
+      },
+      '&:first-of-type': {
+        marginTop: 0
+      },
+      '&:last-of-type': {
+        marginBottom: 0
+      },
+      '& + &': {
+        '&:before': {
+          display: 'none'
+        }
+      }
+    },
+    [`&.${_accordionClasses__WEBPACK_IMPORTED_MODULE_8__.default.disabled}`]: {
+      backgroundColor: theme.palette.action.disabledBackground
+    }
+  };
+}, ({
+  theme,
+  styleProps
+}) => (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__.default)({}, !styleProps.square && {
+  borderRadius: 0,
+  '&:first-of-type': {
+    borderTopLeftRadius: theme.shape.borderRadius,
+    borderTopRightRadius: theme.shape.borderRadius
+  },
+  '&:last-of-type': {
+    borderBottomLeftRadius: theme.shape.borderRadius,
+    borderBottomRightRadius: theme.shape.borderRadius,
+    // Fix a rendering issue on Edge
+    '@supports (-ms-ime-align: auto)': {
+      borderBottomLeftRadius: 0,
+      borderBottomRightRadius: 0
+    }
+  }
+}, !styleProps.disableGutters && {
+  [`&.${_accordionClasses__WEBPACK_IMPORTED_MODULE_8__.default.expanded}`]: {
+    margin: '16px 0'
+  }
+}));
+const Accordion = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.forwardRef(function Accordion(inProps, ref) {
+  const props = (0,_styles_useThemeProps__WEBPACK_IMPORTED_MODULE_11__.default)({
+    props: inProps,
+    name: 'MuiAccordion'
+  });
+
+  const {
+    children: childrenProp,
+    className,
+    defaultExpanded = false,
+    disabled = false,
+    disableGutters = false,
+    expanded: expandedProp,
+    onChange,
+    square = false,
+    TransitionComponent = _Collapse__WEBPACK_IMPORTED_MODULE_12__.default,
+    TransitionProps
+  } = props,
+        other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__.default)(props, _excluded);
+
+  const [expanded, setExpandedState] = (0,_utils_useControlled__WEBPACK_IMPORTED_MODULE_13__.default)({
+    controlled: expandedProp,
+    default: defaultExpanded,
+    name: 'Accordion',
+    state: 'expanded'
+  });
+  const handleChange = react__WEBPACK_IMPORTED_MODULE_2__.useCallback(event => {
+    setExpandedState(!expanded);
+
+    if (onChange) {
+      onChange(event, !expanded);
+    }
+  }, [expanded, onChange, setExpandedState]);
+  const [summary, ...children] = react__WEBPACK_IMPORTED_MODULE_2__.Children.toArray(childrenProp);
+  const contextValue = react__WEBPACK_IMPORTED_MODULE_2__.useMemo(() => ({
+    expanded,
+    disabled,
+    disableGutters,
+    toggle: handleChange
+  }), [expanded, disabled, disableGutters, handleChange]);
+
+  const styleProps = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__.default)({}, props, {
+    square,
+    disabled,
+    disableGutters,
+    expanded
+  });
+
+  const classes = useUtilityClasses(styleProps);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(AccordionRoot, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__.default)({
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_5__.default)(classes.root, className),
+    ref: ref,
+    styleProps: styleProps,
+    square: square
+  }, other, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_AccordionContext__WEBPACK_IMPORTED_MODULE_14__.default.Provider, {
+      value: contextValue,
+      children: summary
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(TransitionComponent, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__.default)({
+      in: expanded,
+      timeout: "auto"
+    }, TransitionProps, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+        "aria-labelledby": summary.props.id,
+        id: summary.props['aria-controls'],
+        role: "region",
+        className: classes.region,
+        children: children
+      })
+    }))]
+  }));
+});
+ true ? Accordion.propTypes
+/* remove-proptypes */
+= {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+
+  /**
+   * The content of the component.
+   */
+  children: (0,_material_ui_utils__WEBPACK_IMPORTED_MODULE_15__.default)((prop_types__WEBPACK_IMPORTED_MODULE_4___default().node.isRequired), props => {
+    const summary = react__WEBPACK_IMPORTED_MODULE_2__.Children.toArray(props.children)[0];
+
+    if ((0,react_is__WEBPACK_IMPORTED_MODULE_3__.isFragment)(summary)) {
+      return new Error("Material-UI: The Accordion doesn't accept a Fragment as a child. " + 'Consider providing an array instead.');
+    }
+
+    if (! /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.isValidElement(summary)) {
+      return new Error('Material-UI: Expected the first child of Accordion to be a valid element.');
+    }
+
+    return null;
+  }),
+
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().object),
+
+  /**
+   * @ignore
+   */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string),
+
+  /**
+   * If `true`, expands the accordion by default.
+   * @default false
+   */
+  defaultExpanded: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().bool),
+
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().bool),
+
+  /**
+   * If `true`, it removes the margin between two expanded accordion items and the increase of height.
+   * @default false
+   */
+  disableGutters: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().bool),
+
+  /**
+   * If `true`, expands the accordion, otherwise collapse it.
+   * Setting this prop enables control over the accordion.
+   */
+  expanded: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().bool),
+
+  /**
+   * Callback fired when the expand/collapse state is changed.
+   *
+   * @param {React.SyntheticEvent} event The event source of the callback. **Warning**: This is a generic event not a change event.
+   * @param {boolean} expanded The `expanded` state of the accordion.
+   */
+  onChange: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().func),
+
+  /**
+   * If `true`, rounded corners are disabled.
+   * @default false
+   */
+  square: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().bool),
+
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().object),
+
+  /**
+   * The component used for the transition.
+   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Collapse
+   */
+  TransitionComponent: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().elementType),
+
+  /**
+   * Props applied to the transition element.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
+   */
+  TransitionProps: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().object)
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Accordion);
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/Accordion/AccordionContext.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@material-ui/core/Accordion/AccordionContext.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+/**
+ * @ignore - internal component.
+ * @type {React.Context<{} | {expanded: boolean, disabled: boolean, disableGutters: boolean, toggle: () => void}>}
+ */
+
+const AccordionContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createContext({});
+
+if (true) {
+  AccordionContext.displayName = 'AccordionContext';
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AccordionContext);
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/Accordion/accordionClasses.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@material-ui/core/Accordion/accordionClasses.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getAccordionUtilityClass": () => (/* binding */ getAccordionUtilityClass),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _material_ui_unstyled__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @material-ui/unstyled */ "./node_modules/@material-ui/unstyled/generateUtilityClass/generateUtilityClass.js");
+/* harmony import */ var _material_ui_unstyled__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/unstyled */ "./node_modules/@material-ui/unstyled/generateUtilityClasses/generateUtilityClasses.js");
+
+function getAccordionUtilityClass(slot) {
+  return (0,_material_ui_unstyled__WEBPACK_IMPORTED_MODULE_0__.default)('MuiAccordion', slot);
+}
+const accordionClasses = (0,_material_ui_unstyled__WEBPACK_IMPORTED_MODULE_1__.default)('MuiAccordion', ['root', 'rounded', 'expanded', 'disabled', 'gutters', 'region']);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (accordionClasses);
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/AccordionDetails/AccordionDetails.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@material-ui/core/AccordionDetails/AccordionDetails.js ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var _material_ui_unstyled__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/unstyled */ "./node_modules/@material-ui/unstyled/composeClasses/composeClasses.js");
+/* harmony import */ var _styles_styled__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../styles/styled */ "./node_modules/@material-ui/core/styles/styled.js");
+/* harmony import */ var _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../styles/useThemeProps */ "./node_modules/@material-ui/core/styles/useThemeProps.js");
+/* harmony import */ var _accordionDetailsClasses__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./accordionDetailsClasses */ "./node_modules/@material-ui/core/AccordionDetails/accordionDetailsClasses.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+const _excluded = ["className"];
+
+
+
+
+
+
+
+
+
+const useUtilityClasses = styleProps => {
+  const {
+    classes
+  } = styleProps;
+  const slots = {
+    root: ['root']
+  };
+  return (0,_material_ui_unstyled__WEBPACK_IMPORTED_MODULE_6__.default)(slots, _accordionDetailsClasses__WEBPACK_IMPORTED_MODULE_7__.getAccordionDetailsUtilityClass, classes);
+};
+
+const AccordionDetailsRoot = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_8__.default)('div', {
+  name: 'MuiAccordionDetails',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root
+})(({
+  theme
+}) => ({
+  padding: theme.spacing(1, 2, 2)
+}));
+const AccordionDetails = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.forwardRef(function AccordionDetails(inProps, ref) {
+  const props = (0,_styles_useThemeProps__WEBPACK_IMPORTED_MODULE_9__.default)({
+    props: inProps,
+    name: 'MuiAccordionDetails'
+  });
+
+  const {
+    className
+  } = props,
+        other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(props, _excluded);
+
+  const styleProps = props;
+  const classes = useUtilityClasses(styleProps);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(AccordionDetailsRoot, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_4__.default)(classes.root, className),
+    ref: ref,
+    styleProps: styleProps
+  }, other));
+});
+ true ? AccordionDetails.propTypes
+/* remove-proptypes */
+= {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+
+  /**
+   * The content of the component.
+   */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().node),
+
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object),
+
+  /**
+   * @ignore
+   */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
+
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object)
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AccordionDetails);
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/AccordionDetails/accordionDetailsClasses.js":
+/*!************************************************************************************!*\
+  !*** ./node_modules/@material-ui/core/AccordionDetails/accordionDetailsClasses.js ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getAccordionDetailsUtilityClass": () => (/* binding */ getAccordionDetailsUtilityClass),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _material_ui_unstyled__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @material-ui/unstyled */ "./node_modules/@material-ui/unstyled/generateUtilityClass/generateUtilityClass.js");
+/* harmony import */ var _material_ui_unstyled__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/unstyled */ "./node_modules/@material-ui/unstyled/generateUtilityClasses/generateUtilityClasses.js");
+
+function getAccordionDetailsUtilityClass(slot) {
+  return (0,_material_ui_unstyled__WEBPACK_IMPORTED_MODULE_0__.default)('MuiAccordionDetails', slot);
+}
+const accordionDetailsClasses = (0,_material_ui_unstyled__WEBPACK_IMPORTED_MODULE_1__.default)('MuiAccordionDetails', ['root']);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (accordionDetailsClasses);
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/AccordionSummary/AccordionSummary.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@material-ui/core/AccordionSummary/AccordionSummary.js ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var _material_ui_unstyled__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/unstyled */ "./node_modules/@material-ui/unstyled/composeClasses/composeClasses.js");
+/* harmony import */ var _styles_styled__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../styles/styled */ "./node_modules/@material-ui/core/styles/styled.js");
+/* harmony import */ var _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../styles/useThemeProps */ "./node_modules/@material-ui/core/styles/useThemeProps.js");
+/* harmony import */ var _ButtonBase__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../ButtonBase */ "./node_modules/@material-ui/core/ButtonBase/ButtonBase.js");
+/* harmony import */ var _Accordion_AccordionContext__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../Accordion/AccordionContext */ "./node_modules/@material-ui/core/Accordion/AccordionContext.js");
+/* harmony import */ var _accordionSummaryClasses__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./accordionSummaryClasses */ "./node_modules/@material-ui/core/AccordionSummary/accordionSummaryClasses.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+const _excluded = ["children", "className", "expandIcon", "focusVisibleClassName", "onClick"];
+
+
+
+
+
+
+
+
+
+
+
+
+const useUtilityClasses = styleProps => {
+  const {
+    classes,
+    expanded,
+    disabled,
+    disableGutters
+  } = styleProps;
+  const slots = {
+    root: ['root', expanded && 'expanded', disabled && 'disabled', !disableGutters && 'gutters'],
+    focusVisible: ['focusVisible'],
+    content: ['content', expanded && 'expanded', !disableGutters && 'contentGutters'],
+    expandIconWrapper: ['expandIconWrapper', expanded && 'expanded']
+  };
+  return (0,_material_ui_unstyled__WEBPACK_IMPORTED_MODULE_6__.default)(slots, _accordionSummaryClasses__WEBPACK_IMPORTED_MODULE_7__.getAccordionSummaryUtilityClass, classes);
+};
+
+const AccordionSummaryRoot = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_8__.default)(_ButtonBase__WEBPACK_IMPORTED_MODULE_9__.default, {
+  name: 'MuiAccordionSummary',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root
+})(({
+  theme,
+  styleProps
+}) => {
+  const transition = {
+    duration: theme.transitions.duration.shortest
+  };
+  return (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__.default)({
+    display: 'flex',
+    minHeight: 48,
+    padding: theme.spacing(0, 2),
+    transition: theme.transitions.create(['min-height', 'background-color'], transition),
+    [`&.${_accordionSummaryClasses__WEBPACK_IMPORTED_MODULE_7__.default.focusVisible}`]: {
+      backgroundColor: theme.palette.action.focus
+    },
+    [`&.${_accordionSummaryClasses__WEBPACK_IMPORTED_MODULE_7__.default.disabled}`]: {
+      opacity: theme.palette.action.disabledOpacity
+    },
+    [`&:hover:not(.${_accordionSummaryClasses__WEBPACK_IMPORTED_MODULE_7__.default.disabled})`]: {
+      cursor: 'pointer'
+    }
+  }, !styleProps.disableGutters && {
+    [`&.${_accordionSummaryClasses__WEBPACK_IMPORTED_MODULE_7__.default.expanded}`]: {
+      minHeight: 64
+    }
+  });
+});
+const AccordionSummaryContent = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_8__.default)('div', {
+  name: 'MuiAccordionSummary',
+  slot: 'Content',
+  overridesResolver: (props, styles) => styles.content
+})(({
+  theme,
+  styleProps
+}) => (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__.default)({
+  display: 'flex',
+  flexGrow: 1,
+  margin: '12px 0'
+}, !styleProps.disableGutters && {
+  transition: theme.transitions.create(['margin'], {
+    duration: theme.transitions.duration.shortest
+  }),
+  [`&.${_accordionSummaryClasses__WEBPACK_IMPORTED_MODULE_7__.default.expanded}`]: {
+    margin: '20px 0'
+  }
+}));
+const AccordionSummaryExpandIconWrapper = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_8__.default)('div', {
+  name: 'MuiAccordionSummary',
+  slot: 'ExpandIconWrapper',
+  overridesResolver: (props, styles) => styles.expandIconWrapper
+})(({
+  theme
+}) => ({
+  display: 'flex',
+  color: theme.palette.action.active,
+  transform: 'rotate(0deg)',
+  transition: theme.transitions.create('transform', {
+    duration: theme.transitions.duration.shortest
+  }),
+  [`&.${_accordionSummaryClasses__WEBPACK_IMPORTED_MODULE_7__.default.expanded}`]: {
+    transform: 'rotate(180deg)'
+  }
+}));
+const AccordionSummary = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.forwardRef(function AccordionSummary(inProps, ref) {
+  const props = (0,_styles_useThemeProps__WEBPACK_IMPORTED_MODULE_10__.default)({
+    props: inProps,
+    name: 'MuiAccordionSummary'
+  });
+
+  const {
+    children,
+    className,
+    expandIcon,
+    focusVisibleClassName,
+    onClick
+  } = props,
+        other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__.default)(props, _excluded);
+
+  const {
+    disabled = false,
+    disableGutters,
+    expanded,
+    toggle
+  } = react__WEBPACK_IMPORTED_MODULE_2__.useContext(_Accordion_AccordionContext__WEBPACK_IMPORTED_MODULE_11__.default);
+
+  const handleChange = event => {
+    if (toggle) {
+      toggle(event);
+    }
+
+    if (onClick) {
+      onClick(event);
+    }
+  };
+
+  const styleProps = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__.default)({}, props, {
+    expanded,
+    disabled,
+    disableGutters
+  });
+
+  const classes = useUtilityClasses(styleProps);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(AccordionSummaryRoot, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__.default)({
+    focusRipple: false,
+    disableRipple: true,
+    disabled: disabled,
+    component: "div",
+    "aria-expanded": expanded,
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_4__.default)(classes.root, className),
+    focusVisibleClassName: (0,clsx__WEBPACK_IMPORTED_MODULE_4__.default)(classes.focusVisible, focusVisibleClassName),
+    onClick: handleChange,
+    ref: ref,
+    styleProps: styleProps
+  }, other, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(AccordionSummaryContent, {
+      className: classes.content,
+      styleProps: styleProps,
+      children: children
+    }), expandIcon && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(AccordionSummaryExpandIconWrapper, {
+      className: classes.expandIconWrapper,
+      styleProps: styleProps,
+      children: expandIcon
+    })]
+  }));
+});
+ true ? AccordionSummary.propTypes
+/* remove-proptypes */
+= {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+
+  /**
+   * The content of the component.
+   */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().node),
+
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object),
+
+  /**
+   * @ignore
+   */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
+
+  /**
+   * The icon to display as the expand indicator.
+   */
+  expandIcon: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().node),
+
+  /**
+   * This prop can help identify which element has keyboard focus.
+   * The class name will be applied when the element gains the focus through keyboard interaction.
+   * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
+   * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
+   * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
+   * if needed.
+   */
+  focusVisibleClassName: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
+
+  /**
+   * @ignore
+   */
+  onClick: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().func),
+
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object)
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AccordionSummary);
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/AccordionSummary/accordionSummaryClasses.js":
+/*!************************************************************************************!*\
+  !*** ./node_modules/@material-ui/core/AccordionSummary/accordionSummaryClasses.js ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getAccordionSummaryUtilityClass": () => (/* binding */ getAccordionSummaryUtilityClass),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _material_ui_unstyled__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @material-ui/unstyled */ "./node_modules/@material-ui/unstyled/generateUtilityClass/generateUtilityClass.js");
+/* harmony import */ var _material_ui_unstyled__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/unstyled */ "./node_modules/@material-ui/unstyled/generateUtilityClasses/generateUtilityClasses.js");
+
+function getAccordionSummaryUtilityClass(slot) {
+  return (0,_material_ui_unstyled__WEBPACK_IMPORTED_MODULE_0__.default)('MuiAccordionSummary', slot);
+}
+const accordionSummaryClasses = (0,_material_ui_unstyled__WEBPACK_IMPORTED_MODULE_1__.default)('MuiAccordionSummary', ['root', 'expanded', 'focusVisible', 'disabled', 'gutters', 'contentGutters', 'content', 'expandIconWrapper']);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (accordionSummaryClasses);
+
+/***/ }),
+
 /***/ "./node_modules/@material-ui/core/AppBar/AppBar.js":
 /*!*********************************************************!*\
   !*** ./node_modules/@material-ui/core/AppBar/AppBar.js ***!
@@ -4101,6 +4848,466 @@ function getTouchRippleUtilityClass(slot) {
 }
 const touchRippleClasses = (0,_material_ui_unstyled__WEBPACK_IMPORTED_MODULE_1__.default)('MuiTouchRipple', ['root', 'ripple', 'rippleVisible', 'ripplePulsate', 'child', 'childLeaving', 'childPulsate']);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (touchRippleClasses);
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/Collapse/Collapse.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@material-ui/core/Collapse/Collapse.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_transition_group__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-transition-group */ "./node_modules/react-transition-group/esm/Transition.js");
+/* harmony import */ var _material_ui_utils__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @material-ui/utils */ "./node_modules/@material-ui/utils/esm/elementTypeAcceptingRef.js");
+/* harmony import */ var _material_ui_unstyled__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/unstyled */ "./node_modules/@material-ui/unstyled/composeClasses/composeClasses.js");
+/* harmony import */ var _styles_styled__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../styles/styled */ "./node_modules/@material-ui/core/styles/styled.js");
+/* harmony import */ var _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../styles/useThemeProps */ "./node_modules/@material-ui/core/styles/useThemeProps.js");
+/* harmony import */ var _styles_createTransitions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../styles/createTransitions */ "./node_modules/@material-ui/core/styles/createTransitions.js");
+/* harmony import */ var _transitions_utils__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../transitions/utils */ "./node_modules/@material-ui/core/transitions/utils.js");
+/* harmony import */ var _styles_useTheme__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../styles/useTheme */ "./node_modules/@material-ui/core/styles/useTheme.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../utils */ "./node_modules/@material-ui/core/utils/useForkRef.js");
+/* harmony import */ var _collapseClasses__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./collapseClasses */ "./node_modules/@material-ui/core/Collapse/collapseClasses.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+const _excluded = ["children", "className", "collapsedSize", "component", "easing", "in", "onEnter", "onEntered", "onEntering", "onExit", "onExited", "onExiting", "orientation", "style", "timeout", "TransitionComponent"];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const useUtilityClasses = styleProps => {
+  const {
+    orientation,
+    classes
+  } = styleProps;
+  const slots = {
+    root: ['root', `${orientation}`],
+    entered: ['entered'],
+    hidden: ['hidden'],
+    wrapper: ['wrapper', `${orientation}`],
+    wrapperInner: ['wrapperInner', `${orientation}`]
+  };
+  return (0,_material_ui_unstyled__WEBPACK_IMPORTED_MODULE_6__.default)(slots, _collapseClasses__WEBPACK_IMPORTED_MODULE_7__.getCollapseUtilityClass, classes);
+};
+
+const CollapseRoot = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_8__.default)('div', {
+  name: 'MuiCollapse',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const {
+      styleProps
+    } = props;
+    return [styles.root, styles[styleProps.orientation], styleProps.state === 'entered' && styles.entered, styleProps.state === 'exited' && !styleProps.in && styleProps.collapsedSize === '0px' && styles.hidden];
+  }
+})(({
+  theme,
+  styleProps
+}) => (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__.default)({
+  height: 0,
+  overflow: 'hidden',
+  transition: theme.transitions.create('height')
+}, styleProps.orientation === 'horizontal' && {
+  height: 'auto',
+  width: 0,
+  transition: theme.transitions.create('width')
+}, styleProps.state === 'entered' && (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__.default)({
+  height: 'auto',
+  overflow: 'visible'
+}, styleProps.orientation === 'horizontal' && {
+  width: 'auto'
+}), styleProps.state === 'exited' && !styleProps.in && styleProps.collapsedSize === '0px' && {
+  visibility: 'hidden'
+}));
+const CollapseWrapper = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_8__.default)('div', {
+  name: 'MuiCollapse',
+  slot: 'Wrapper',
+  overridesResolver: (props, styles) => styles.wrapper
+})(({
+  styleProps
+}) => (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__.default)({
+  // Hack to get children with a negative margin to not falsify the height computation.
+  display: 'flex',
+  width: '100%'
+}, styleProps.orientation === 'horizontal' && {
+  width: 'auto',
+  height: '100%'
+}));
+const CollapseWrapperInner = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_8__.default)('div', {
+  name: 'MuiCollapse',
+  slot: 'WrapperInner',
+  overridesResolver: (props, styles) => styles.wrapperInner
+})(({
+  styleProps
+}) => (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__.default)({
+  width: '100%'
+}, styleProps.orientation === 'horizontal' && {
+  width: 'auto',
+  height: '100%'
+}));
+/**
+ * The Collapse transition is used by the
+ * [Vertical Stepper](/components/steppers/#vertical-stepper) StepContent component.
+ * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
+ */
+
+const Collapse = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.forwardRef(function Collapse(inProps, ref) {
+  const props = (0,_styles_useThemeProps__WEBPACK_IMPORTED_MODULE_9__.default)({
+    props: inProps,
+    name: 'MuiCollapse'
+  });
+
+  const {
+    children,
+    className,
+    collapsedSize: collapsedSizeProp = '0px',
+    component,
+    easing,
+    in: inProp,
+    onEnter,
+    onEntered,
+    onEntering,
+    onExit,
+    onExited,
+    onExiting,
+    orientation = 'vertical',
+    style,
+    timeout = _styles_createTransitions__WEBPACK_IMPORTED_MODULE_10__.duration.standard,
+    // eslint-disable-next-line react/prop-types
+    TransitionComponent = react_transition_group__WEBPACK_IMPORTED_MODULE_11__.default
+  } = props,
+        other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__.default)(props, _excluded);
+
+  const styleProps = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__.default)({}, props, {
+    orientation,
+    collapsedSize: collapsedSizeProp
+  });
+
+  const classes = useUtilityClasses(styleProps);
+  const theme = (0,_styles_useTheme__WEBPACK_IMPORTED_MODULE_12__.default)();
+  const timer = react__WEBPACK_IMPORTED_MODULE_2__.useRef();
+  const wrapperRef = react__WEBPACK_IMPORTED_MODULE_2__.useRef(null);
+  const autoTransitionDuration = react__WEBPACK_IMPORTED_MODULE_2__.useRef();
+  const collapsedSize = typeof collapsedSizeProp === 'number' ? `${collapsedSizeProp}px` : collapsedSizeProp;
+  const isHorizontal = orientation === 'horizontal';
+  const size = isHorizontal ? 'width' : 'height';
+  react__WEBPACK_IMPORTED_MODULE_2__.useEffect(() => {
+    return () => {
+      clearTimeout(timer.current);
+    };
+  }, []);
+  const nodeRef = react__WEBPACK_IMPORTED_MODULE_2__.useRef(null);
+  const handleRef = (0,_utils__WEBPACK_IMPORTED_MODULE_13__.default)(ref, nodeRef);
+
+  const normalizedTransitionCallback = callback => maybeIsAppearing => {
+    if (callback) {
+      const node = nodeRef.current; // onEnterXxx and onExitXxx callbacks have a different arguments.length value.
+
+      if (maybeIsAppearing === undefined) {
+        callback(node);
+      } else {
+        callback(node, maybeIsAppearing);
+      }
+    }
+  };
+
+  const getWrapperSize = () => wrapperRef.current ? wrapperRef.current[isHorizontal ? 'clientWidth' : 'clientHeight'] : 0;
+
+  const handleEnter = normalizedTransitionCallback((node, isAppearing) => {
+    if (wrapperRef.current && isHorizontal) {
+      // Set absolute position to get the size of collapsed content
+      wrapperRef.current.style.position = 'absolute';
+    }
+
+    node.style[size] = collapsedSize;
+
+    if (onEnter) {
+      onEnter(node, isAppearing);
+    }
+  });
+  const handleEntering = normalizedTransitionCallback((node, isAppearing) => {
+    const wrapperSize = getWrapperSize();
+
+    if (wrapperRef.current && isHorizontal) {
+      // After the size is read reset the position back to default
+      wrapperRef.current.style.position = '';
+    }
+
+    const {
+      duration: transitionDuration,
+      easing: transitionTimingFunction
+    } = (0,_transitions_utils__WEBPACK_IMPORTED_MODULE_14__.getTransitionProps)({
+      style,
+      timeout,
+      easing
+    }, {
+      mode: 'enter'
+    });
+
+    if (timeout === 'auto') {
+      const duration2 = theme.transitions.getAutoHeightDuration(wrapperSize);
+      node.style.transitionDuration = `${duration2}ms`;
+      autoTransitionDuration.current = duration2;
+    } else {
+      node.style.transitionDuration = typeof transitionDuration === 'string' ? transitionDuration : `${transitionDuration}ms`;
+    }
+
+    node.style[size] = `${wrapperSize}px`;
+    node.style.transitionTimingFunction = transitionTimingFunction;
+
+    if (onEntering) {
+      onEntering(node, isAppearing);
+    }
+  });
+  const handleEntered = normalizedTransitionCallback((node, isAppearing) => {
+    node.style[size] = 'auto';
+
+    if (onEntered) {
+      onEntered(node, isAppearing);
+    }
+  });
+  const handleExit = normalizedTransitionCallback(node => {
+    node.style[size] = `${getWrapperSize()}px`;
+
+    if (onExit) {
+      onExit(node);
+    }
+  });
+  const handleExited = normalizedTransitionCallback(onExited);
+  const handleExiting = normalizedTransitionCallback(node => {
+    const wrapperSize = getWrapperSize();
+    const {
+      duration: transitionDuration,
+      easing: transitionTimingFunction
+    } = (0,_transitions_utils__WEBPACK_IMPORTED_MODULE_14__.getTransitionProps)({
+      style,
+      timeout,
+      easing
+    }, {
+      mode: 'exit'
+    });
+
+    if (timeout === 'auto') {
+      // TODO: rename getAutoHeightDuration to something more generic (width support)
+      // Actually it just calculates animation duration based on size
+      const duration2 = theme.transitions.getAutoHeightDuration(wrapperSize);
+      node.style.transitionDuration = `${duration2}ms`;
+      autoTransitionDuration.current = duration2;
+    } else {
+      node.style.transitionDuration = typeof transitionDuration === 'string' ? transitionDuration : `${transitionDuration}ms`;
+    }
+
+    node.style[size] = collapsedSize;
+    node.style.transitionTimingFunction = transitionTimingFunction;
+
+    if (onExiting) {
+      onExiting(node);
+    }
+  });
+
+  const addEndListener = next => {
+    if (timeout === 'auto') {
+      timer.current = setTimeout(next, autoTransitionDuration.current || 0);
+    }
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(TransitionComponent, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__.default)({
+    in: inProp,
+    onEnter: handleEnter,
+    onEntered: handleEntered,
+    onEntering: handleEntering,
+    onExit: handleExit,
+    onExited: handleExited,
+    onExiting: handleExiting,
+    addEndListener: addEndListener,
+    nodeRef: nodeRef,
+    timeout: timeout === 'auto' ? null : timeout
+  }, other, {
+    children: (state, childProps) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CollapseRoot, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__.default)({
+      as: component,
+      className: (0,clsx__WEBPACK_IMPORTED_MODULE_3__.default)(classes.root, className, {
+        'entered': classes.entered,
+        'exited': !inProp && collapsedSize === '0px' && classes.hidden
+      }[state]),
+      style: (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__.default)({
+        [isHorizontal ? 'minWidth' : 'minHeight']: collapsedSize
+      }, style),
+      styleProps: (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__.default)({}, styleProps, {
+        state
+      }),
+      ref: handleRef
+    }, childProps, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CollapseWrapper, {
+        styleProps: (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__.default)({}, styleProps, {
+          state
+        }),
+        className: classes.wrapper,
+        ref: wrapperRef,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CollapseWrapperInner, {
+          styleProps: (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__.default)({}, styleProps, {
+            state
+          }),
+          className: classes.wrapperInner,
+          children: children
+        })
+      })
+    }))
+  }));
+});
+ true ? Collapse.propTypes
+/* remove-proptypes */
+= {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+
+  /**
+   * The content node to be collapsed.
+   */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().node),
+
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().object),
+
+  /**
+   * @ignore
+   */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string),
+
+  /**
+   * The width (horizontal) or height (vertical) of the container when collapsed.
+   * @default '0px'
+   */
+  collapsedSize: prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_4___default().number), (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string)]),
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: _material_ui_utils__WEBPACK_IMPORTED_MODULE_15__.default,
+
+  /**
+   * The transition timing function.
+   * You may specify a single easing or a object containing enter and exit values.
+   */
+  easing: prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_4___default().shape({
+    enter: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string),
+    exit: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string)
+  }), (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string)]),
+
+  /**
+   * If `true`, the component will transition in.
+   */
+  in: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().bool),
+
+  /**
+   * @ignore
+   */
+  onEnter: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().func),
+
+  /**
+   * @ignore
+   */
+  onEntered: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().func),
+
+  /**
+   * @ignore
+   */
+  onEntering: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().func),
+
+  /**
+   * @ignore
+   */
+  onExit: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().func),
+
+  /**
+   * @ignore
+   */
+  onExited: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().func),
+
+  /**
+   * @ignore
+   */
+  onExiting: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().func),
+
+  /**
+   * The transition orientation.
+   * @default 'vertical'
+   */
+  orientation: prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOf(['horizontal', 'vertical']),
+
+  /**
+   * @ignore
+   */
+  style: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().object),
+
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().object),
+
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   *
+   * Set to 'auto' to automatically calculate transition time based on height.
+   * @default duration.standard
+   */
+  timeout: prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOf(['auto']), (prop_types__WEBPACK_IMPORTED_MODULE_4___default().number), prop_types__WEBPACK_IMPORTED_MODULE_4___default().shape({
+    appear: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().number),
+    enter: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().number),
+    exit: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().number)
+  })])
+} : 0;
+Collapse.muiSupportAuto = true;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Collapse);
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/Collapse/collapseClasses.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@material-ui/core/Collapse/collapseClasses.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getCollapseUtilityClass": () => (/* binding */ getCollapseUtilityClass),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _material_ui_unstyled__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @material-ui/unstyled */ "./node_modules/@material-ui/unstyled/generateUtilityClass/generateUtilityClass.js");
+/* harmony import */ var _material_ui_unstyled__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/unstyled */ "./node_modules/@material-ui/unstyled/generateUtilityClasses/generateUtilityClasses.js");
+
+function getCollapseUtilityClass(slot) {
+  return (0,_material_ui_unstyled__WEBPACK_IMPORTED_MODULE_0__.default)('MuiCollapse', slot);
+}
+const collapseClasses = (0,_material_ui_unstyled__WEBPACK_IMPORTED_MODULE_1__.default)('MuiCollapse', ['root', 'horizontal', 'vertical', 'entered', 'hidden', 'wrapper', 'wrapperInner']);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (collapseClasses);
 
 /***/ }),
 
@@ -15393,6 +16600,62 @@ exports.default = _default;
 
 /***/ }),
 
+/***/ "./node_modules/@material-ui/icons/AssignmentInd.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@material-ui/icons/AssignmentInd.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.default = void 0;
+
+var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
+
+var _jsxRuntime = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
+  d: "M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm0 4c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H6v-1.4c0-2 4-3.1 6-3.1s6 1.1 6 3.1V19z"
+}), 'AssignmentInd');
+
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/icons/ExpandMore.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@material-ui/icons/ExpandMore.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.default = void 0;
+
+var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
+
+var _jsxRuntime = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
+  d: "M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+}), 'ExpandMore');
+
+exports.default = _default;
+
+/***/ }),
+
 /***/ "./node_modules/@material-ui/icons/Facebook.js":
 /*!*****************************************************!*\
   !*** ./node_modules/@material-ui/icons/Facebook.js ***!
@@ -22558,11 +23821,7 @@ react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime
   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.BrowserRouter, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_system_App__WEBPACK_IMPORTED_MODULE_4__.default, {})
   })
-}), document.getElementById('app')); // If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-
-reportWebVitals();
+}), document.getElementById('app'));
 
 /***/ }),
 
@@ -22668,6 +23927,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _system_Container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../system/Container */ "./resources/js/system/Container/index.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22692,6 +23953,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
 var Home = /*#__PURE__*/function (_React$Component) {
   _inherits(Home, _React$Component);
 
@@ -22706,7 +23969,10 @@ var Home = /*#__PURE__*/function (_React$Component) {
   _createClass(Home, [{
     key: "render",
     value: function render() {
-      return '첫 페이지';
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_system_Container__WEBPACK_IMPORTED_MODULE_1__.default, {
+        content: "\uCCAB \uD398\uC774\uC9C0",
+        leftSide: "\uC67C\uCABD"
+      });
     }
   }]);
 
@@ -22717,16 +23983,16 @@ var Home = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
-/***/ "./resources/js/routes/User/components/Contents.jsx":
-/*!**********************************************************!*\
-  !*** ./resources/js/routes/User/components/Contents.jsx ***!
-  \**********************************************************/
+/***/ "./resources/js/routes/User/components/Content.jsx":
+/*!*********************************************************!*\
+  !*** ./resources/js/routes/User/components/Content.jsx ***!
+  \*********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ Content)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
@@ -22760,18 +24026,18 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var Contents = /*#__PURE__*/function (_React$Component) {
-  _inherits(Contents, _React$Component);
+var Content = /*#__PURE__*/function (_React$Component) {
+  _inherits(Content, _React$Component);
 
-  var _super = _createSuper(Contents);
+  var _super = _createSuper(Content);
 
-  function Contents() {
-    _classCallCheck(this, Contents);
+  function Content() {
+    _classCallCheck(this, Content);
 
     return _super.apply(this, arguments);
   }
 
-  _createClass(Contents, [{
+  _createClass(Content, [{
     key: "render",
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Switch, {
@@ -22781,17 +24047,21 @@ var Contents = /*#__PURE__*/function (_React$Component) {
           component: _routes__WEBPACK_IMPORTED_MODULE_1__.Home
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Route, {
           exact: true,
-          path: "/user/login",
-          component: _routes__WEBPACK_IMPORTED_MODULE_1__.Login
+          path: "/user/signin",
+          component: _routes__WEBPACK_IMPORTED_MODULE_1__.Signin
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Route, {
+          exact: true,
+          path: "/user/signup",
+          component: _routes__WEBPACK_IMPORTED_MODULE_1__.Signup
         })]
       });
     }
   }]);
 
-  return Contents;
+  return Content;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Contents);
+
 
 /***/ }),
 
@@ -22807,9 +24077,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _components_Contents__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Contents */ "./resources/js/routes/User/components/Contents.jsx");
-/* harmony import */ var _sass_routes_user_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../sass/routes/user.scss */ "./resources/sass/routes/user.scss");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _system_Container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../system/Container */ "./resources/js/system/Container/index.jsx");
+/* harmony import */ var _components_Content__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Content */ "./resources/js/routes/User/components/Content.jsx");
+/* harmony import */ var _sass_routes_user_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../sass/routes/user.scss */ "./resources/sass/routes/user.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22837,6 +24108,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var User = /*#__PURE__*/function (_React$Component) {
   _inherits(User, _React$Component);
 
@@ -22851,7 +24123,10 @@ var User = /*#__PURE__*/function (_React$Component) {
   _createClass(User, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_Contents__WEBPACK_IMPORTED_MODULE_1__.default, {});
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_system_Container__WEBPACK_IMPORTED_MODULE_1__.default, {
+        content: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Content__WEBPACK_IMPORTED_MODULE_2__.default, {}),
+        leftSide: "\uC67C\uCABD"
+      });
     }
   }]);
 
@@ -22927,10 +24202,10 @@ var Home = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
-/***/ "./resources/js/routes/User/routes/Login/index.jsx":
-/*!*********************************************************!*\
-  !*** ./resources/js/routes/User/routes/Login/index.jsx ***!
-  \*********************************************************/
+/***/ "./resources/js/routes/User/routes/Signin/index.jsx":
+/*!**********************************************************!*\
+  !*** ./resources/js/routes/User/routes/Signin/index.jsx ***!
+  \**********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -22976,32 +24251,32 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var Login = /*#__PURE__*/function (_React$Component) {
-  _inherits(Login, _React$Component);
+var Signin = /*#__PURE__*/function (_React$Component) {
+  _inherits(Signin, _React$Component);
 
-  var _super = _createSuper(Login);
+  var _super = _createSuper(Signin);
 
-  function Login() {
-    _classCallCheck(this, Login);
+  function Signin() {
+    _classCallCheck(this, Signin);
 
     return _super.apply(this, arguments);
   }
 
-  _createClass(Login, [{
+  _createClass(Signin, [{
     key: "render",
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        "class": "user-login-form",
+        className: "user-login-form",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {
-          "class": "form-title",
+          className: "form-title",
           children: "\uD68C\uC6D0 \uB85C\uADF8\uC778"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          "class": "form-contents",
+          className: "form-contents",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
             method: "post",
             action: "/user/login",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-              "class": "input",
+              className: "input",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__.default, {
                 id: "user-email",
                 name: "email",
@@ -23010,7 +24285,7 @@ var Login = /*#__PURE__*/function (_React$Component) {
                 fullWidth: true
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-              "class": "input",
+              className: "input",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__.default, {
                 id: "user-password",
                 name: "password",
@@ -23020,7 +24295,7 @@ var Login = /*#__PURE__*/function (_React$Component) {
                 fullWidth: true
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-              "class": "input",
+              className: "input",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__.default, {
                 variant: "contained",
                 color: "primary",
@@ -23032,53 +24307,65 @@ var Login = /*#__PURE__*/function (_React$Component) {
             })]
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-          "class": "social-login",
+          className: "social-login",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {
-            "class": "social-title",
+            className: "social-title",
             children: "\uC18C\uC15C\uACC4\uC815 \uB85C\uADF8\uC778"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            "class": "item facebook",
+            className: "item facebook",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-              "class": "icon",
+              className: "icon",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_icons_Facebook__WEBPACK_IMPORTED_MODULE_4__.default, {})
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-              "class": "text",
+              className: "text",
               children: "\uD398\uC774\uC2A4\uBD81 \uACC4\uC815\uC73C\uB85C \uB85C\uADF8\uC778"
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            "class": "item twitter",
+            className: "item twitter",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-              "class": "icon",
+              className: "icon",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_icons_Twitter__WEBPACK_IMPORTED_MODULE_5__.default, {})
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-              "class": "text",
+              className: "text",
               children: "\uD2B8\uC704\uD130 \uACC4\uC815\uC73C\uB85C \uB85C\uADF8\uC778"
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            "class": "item naver",
+            className: "item naver",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-              "class": "icon",
-              children: "N"
+              className: "icon",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
+                xmlns: "http://www.w3.org/2000/svg",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
+                  points: "16.116 12.807 7.546 0.54 0.443 0.54 0.443 23.46 7.884 23.46 7.884 11.193 16.454 23.46 23.557 23.46 23.557 0.54 16.116 0.54 16.116 12.807"
+                })
+              })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-              "class": "text",
+              className: "text",
               children: "\uB124\uC774\uBC84 \uACC4\uC815\uC73C\uB85C \uB85C\uADF8\uC778"
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            "class": "item kakao",
+            className: "item kakao",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-              "class": "icon",
-              children: "K"
+              className: "icon",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
+                xmlns: "http://www.w3.org/2000/svg",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+                  d: "M12,.744C5.851.744.25,4.828.25,9.866c0,3.132,2.034,5.9,5.132,7.537l-1.3,4.785a.481.481,0,0,0,.736.516l5.714-3.79c.482.047.973.073,1.471.073,6.49,0,11.75-4.083,11.75-9.121S18.49.744,12,.744"
+                })
+              })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-              "class": "text",
+              className: "text",
               children: "\uCE74\uCE74\uC624 \uACC4\uC815\uC73C\uB85C \uB85C\uADF8\uC778"
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            "class": "item google",
+            className: "item google",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-              "class": "icon",
+              className: "icon",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_icons_Google__WEBPACK_IMPORTED_MODULE_6__.default, {})
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-              "class": "text",
+              className: "text",
               children: "\uAD6C\uAE00 \uACC4\uC815\uC73C\uB85C \uB85C\uADF8\uC778"
             })]
           })]
@@ -23087,10 +24374,264 @@ var Login = /*#__PURE__*/function (_React$Component) {
     }
   }]);
 
-  return Login;
+  return Signin;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Login);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Signin);
+
+/***/ }),
+
+/***/ "./resources/js/routes/User/routes/Signup/index.jsx":
+/*!**********************************************************!*\
+  !*** ./resources/js/routes/User/routes/Signup/index.jsx ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Signup)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _material_ui_core_Accordion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/Accordion */ "./node_modules/@material-ui/core/Accordion/Accordion.js");
+/* harmony import */ var _material_ui_core_AccordionSummary__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/AccordionSummary */ "./node_modules/@material-ui/core/AccordionSummary/AccordionSummary.js");
+/* harmony import */ var _material_ui_core_AccordionDetails__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/AccordionDetails */ "./node_modules/@material-ui/core/AccordionDetails/AccordionDetails.js");
+/* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/Typography/Typography.js");
+/* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/Grid/Grid.js");
+/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/TextField/TextField.js");
+/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/Button/Button.js");
+/* harmony import */ var _material_ui_icons_ExpandMore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/icons/ExpandMore */ "./node_modules/@material-ui/icons/ExpandMore.js");
+/* harmony import */ var _material_ui_icons_Facebook__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/icons/Facebook */ "./node_modules/@material-ui/icons/Facebook.js");
+/* harmony import */ var _material_ui_icons_Twitter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/icons/Twitter */ "./node_modules/@material-ui/icons/Twitter.js");
+/* harmony import */ var _material_ui_icons_Google__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/icons/Google */ "./node_modules/@material-ui/icons/Google.js");
+/* harmony import */ var _material_ui_icons_AssignmentInd__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @material-ui/icons/AssignmentInd */ "./node_modules/@material-ui/icons/AssignmentInd.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var Signup = /*#__PURE__*/function (_React$Component) {
+  _inherits(Signup, _React$Component);
+
+  var _super = _createSuper(Signup);
+
+  function Signup() {
+    _classCallCheck(this, Signup);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(Signup, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "user-signup-form",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {
+          className: "form-title",
+          children: "\uD68C\uC6D0\uAC00\uC785"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "social-login",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_material_ui_core_Accordion__WEBPACK_IMPORTED_MODULE_2__.default, {
+            className: "accordion",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core_AccordionSummary__WEBPACK_IMPORTED_MODULE_3__.default, {
+              expandIcon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_icons_ExpandMore__WEBPACK_IMPORTED_MODULE_4__.default, {}),
+              "aria-controls": "signup-by-social-content",
+              id: "signup-by-social-header",
+              className: "accordion-summary",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_5__.default, {
+                className: "social-title",
+                children: "\uC18C\uC15C\uACC4\uC815\uC73C\uB85C \uAC04\uD3B8\uD558\uAC8C \uD68C\uC6D0\uAC00\uC785"
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_material_ui_core_AccordionDetails__WEBPACK_IMPORTED_MODULE_6__.default, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "item facebook",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "icon",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_icons_Facebook__WEBPACK_IMPORTED_MODULE_7__.default, {})
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "text",
+                  children: "\uD398\uC774\uC2A4\uBD81 \uACC4\uC815\uC73C\uB85C \uD68C\uC6D0\uAC00\uC785"
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "item twitter",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "icon",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_icons_Twitter__WEBPACK_IMPORTED_MODULE_8__.default, {})
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "text",
+                  children: "\uD2B8\uC704\uD130 \uACC4\uC815\uC73C\uB85C \uD68C\uC6D0\uAC00\uC785"
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "item naver",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "icon",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("polygon", {
+                      points: "16.116 12.807 7.546 0.54 0.443 0.54 0.443 23.46 7.884 23.46 7.884 11.193 16.454 23.46 23.557 23.46 23.557 0.54 16.116 0.54 16.116 12.807"
+                    })
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "text",
+                  children: "\uB124\uC774\uBC84 \uACC4\uC815\uC73C\uB85C \uD68C\uC6D0\uAC00\uC785"
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "item kakao",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "icon",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+                      d: "M12,.744C5.851.744.25,4.828.25,9.866c0,3.132,2.034,5.9,5.132,7.537l-1.3,4.785a.481.481,0,0,0,.736.516l5.714-3.79c.482.047.973.073,1.471.073,6.49,0,11.75-4.083,11.75-9.121S18.49.744,12,.744"
+                    })
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "text",
+                  children: "\uCE74\uCE74\uC624 \uACC4\uC815\uC73C\uB85C \uD68C\uC6D0\uAC00\uC785"
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "item google",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "icon",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_icons_Google__WEBPACK_IMPORTED_MODULE_9__.default, {})
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "text",
+                  children: "\uAD6C\uAE00 \uACC4\uC815\uC73C\uB85C \uD68C\uC6D0\uAC00\uC785"
+                })]
+              })]
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "form-contents",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_10__.default, {
+            container: true,
+            direction: "column",
+            className: "input-form",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
+              id: "input-user-signup",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_10__.default, {
+                item: true,
+                className: "input-item",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_11__.default, {
+                  id: "input-user-email",
+                  name: "email",
+                  label: "\uC774\uBA54\uC77C \uC8FC\uC18C *",
+                  variant: "outlined",
+                  helperText: "\uC774\uBA54\uC77C \uC8FC\uC18C\uB294 \uACC4\uC815 \uC544\uC774\uB514\uB85C \uC0AC\uC6A9\uB429\uB2C8\uB2E4.",
+                  type: "email",
+                  fullWidth: true
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_10__.default, {
+                item: true,
+                className: "input-item",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_11__.default, {
+                  id: "input-user-password",
+                  name: "password",
+                  label: "\uD328\uC2A4\uC6CC\uB4DC *",
+                  variant: "outlined",
+                  helperText: "\uC0AC\uC6A9\uD560 \uD328\uC2A4\uC6CC\uB4DC\uB97C \uC815\uD655\uD558\uAC8C \uC785\uB825\uD558\uC138\uC694. (\uC601\uBB38 \uB300\uC18C\uBB38\uC790, \uC22B\uC790, \uD2B9\uC218\uBB38\uC790 \uD3EC\uD568 12\uC790 \uC774\uC0C1)",
+                  type: "password",
+                  fullWidth: true
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_10__.default, {
+                item: true,
+                className: "input-item",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_11__.default, {
+                  id: "input-user-password-confirm",
+                  label: "\uD328\uC2A4\uC6CC\uB4DC \uD655\uC778 *",
+                  variant: "outlined",
+                  helperText: "\uC704\uC5D0\uC11C \uC785\uB825\uD55C \uD328\uC2A4\uC6CC\uB4DC\uB97C \uB2E4\uC2DC \uD55C \uBC88 \uC785\uB825\uD574\uC8FC\uC138\uC694.)",
+                  type: "password",
+                  fullWidth: true
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_10__.default, {
+                container: true,
+                direction: "row",
+                className: "input-item",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_10__.default, {
+                  item: true,
+                  xs: 6,
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_11__.default, {
+                    id: "input-user-firstname",
+                    name: "firstname",
+                    label: "\uC774\uB984 *",
+                    variant: "outlined",
+                    helperText: "\uBCF8\uC778\uC758 \uC774\uB984\uC744 \uC785\uB825\uD558\uC138\uC694.",
+                    fullWidth: true
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_10__.default, {
+                  item: true,
+                  xs: 1
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_10__.default, {
+                  item: true,
+                  xs: 5,
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_11__.default, {
+                    id: "input-user-lastname",
+                    name: "lastname",
+                    label: "\uC131 *",
+                    variant: "outlined",
+                    helperText: "\uBCF8\uC778\uC758 \uC131\uC744 \uC785\uB825\uD558\uC138\uC694.",
+                    fullWidth: true
+                  })
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_10__.default, {
+                item: true,
+                className: "input-item button",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_12__.default, {
+                  variant: "contained",
+                  size: "large",
+                  startIcon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_icons_AssignmentInd__WEBPACK_IMPORTED_MODULE_13__.default, {}),
+                  disableElevation: true,
+                  children: "\uD68C\uC6D0\uAC00\uC785"
+                })
+              })]
+            })
+          })
+        })]
+      });
+    }
+  }]);
+
+  return Signup;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+
 
 /***/ }),
 
@@ -23104,10 +24645,13 @@ var Login = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Home": () => (/* reexport safe */ _Home__WEBPACK_IMPORTED_MODULE_0__.default),
-/* harmony export */   "Login": () => (/* reexport safe */ _Login__WEBPACK_IMPORTED_MODULE_1__.default)
+/* harmony export */   "Signin": () => (/* reexport safe */ _Signin__WEBPACK_IMPORTED_MODULE_1__.default),
+/* harmony export */   "Signup": () => (/* reexport safe */ _Signup__WEBPACK_IMPORTED_MODULE_2__.default)
 /* harmony export */ });
 /* harmony import */ var _Home__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Home */ "./resources/js/routes/User/routes/Home/index.jsx");
-/* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Login */ "./resources/js/routes/User/routes/Login/index.jsx");
+/* harmony import */ var _Signin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Signin */ "./resources/js/routes/User/routes/Signin/index.jsx");
+/* harmony import */ var _Signup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Signup */ "./resources/js/routes/User/routes/Signup/index.jsx");
+
 
 
 
@@ -23215,6 +24759,85 @@ var App = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
+/***/ "./resources/js/system/Container/index.jsx":
+/*!*************************************************!*\
+  !*** ./resources/js/system/Container/index.jsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Container)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/Grid/Grid.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+var Container = /*#__PURE__*/function (_React$Component) {
+  _inherits(Container, _React$Component);
+
+  var _super = _createSuper(Container);
+
+  function Container() {
+    _classCallCheck(this, Container);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(Container, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          content = _this$props.content,
+          leftSide = _this$props.leftSide;
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_2__.default, {
+          className: "ls",
+          item: true,
+          children: leftSide
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_2__.default, {
+          className: "rs",
+          item: true,
+          children: content
+        })]
+      });
+    }
+  }]);
+
+  return Container;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+
+
+/***/ }),
+
 /***/ "./resources/js/system/Layout/index.jsx":
 /*!**********************************************!*\
   !*** ./resources/js/system/Layout/index.jsx ***!
@@ -23224,17 +24847,17 @@ var App = /*#__PURE__*/function (_React$Component) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ Layout)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/system/esm/ThemeProvider/ThemeProvider.js");
 /* harmony import */ var _material_ui_core_Container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core/Container */ "./node_modules/@material-ui/core/Container/Container.js");
 /* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/Grid/Grid.js");
 /* harmony import */ var _material_ui_core_AppBar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/AppBar */ "./node_modules/@material-ui/core/AppBar/AppBar.js");
 /* harmony import */ var _material_ui_core_Toolbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/Toolbar */ "./node_modules/@material-ui/core/Toolbar/Toolbar.js");
 /* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/Typography/Typography.js");
-/* harmony import */ var _material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/IconButton/IconButton.js");
+/* harmony import */ var _material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/IconButton/IconButton.js");
 /* harmony import */ var _material_ui_icons_AccountCircle__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/icons/AccountCircle */ "./node_modules/@material-ui/icons/AccountCircle.js");
 /* harmony import */ var _Theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Theme */ "./resources/js/system/Theme/index.jsx");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
@@ -23288,6 +24911,9 @@ var Layout = /*#__PURE__*/function (_React$Component) {
   _createClass(Layout, [{
     key: "render",
     value: function render() {
+      var _this$props = this.props,
+          content = _this$props.content,
+          leftSide = _this$props.leftSide;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__.default, {
         theme: _Theme__WEBPACK_IMPORTED_MODULE_1__.default,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
@@ -23299,15 +24925,18 @@ var Layout = /*#__PURE__*/function (_React$Component) {
               className: "header-toolbar",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_6__.default, {
                 className: "header-title",
-                children: "News"
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
+                  to: "/",
+                  children: "\uB274\uC2A4\uB313\uAE00 \uC5EC\uB860\uBD84\uC11D\uAE30"
+                })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_7__.default, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_8__.default, {
                   "aria-label": "account of current user",
                   "aria-controls": "menu-appbar",
                   "aria-haspopup": "true",
                   color: "inherit",
-                  component: react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link,
-                  to: "/user/login",
+                  component: react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link,
+                  to: "/user/signin",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_icons_AccountCircle__WEBPACK_IMPORTED_MODULE_9__.default, {})
                 })
               })]
@@ -23315,18 +24944,10 @@ var Layout = /*#__PURE__*/function (_React$Component) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core_Container__WEBPACK_IMPORTED_MODULE_10__.default, {
             className: "j2kb-container",
             maxWidth: false,
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_11__.default, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_11__.default, {
               className: "inner-container",
               container: true,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_11__.default, {
-                className: "ls",
-                item: true,
-                children: "\uC67C\uCABD"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_11__.default, {
-                className: "rs",
-                item: true,
-                children: this.props.children
-              })]
+              children: this.props.children
             })
           })]
         })
@@ -23337,7 +24958,7 @@ var Layout = /*#__PURE__*/function (_React$Component) {
   return Layout;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Layout);
+
 
 /***/ }),
 
@@ -23437,9 +25058,9 @@ function toVal(mix) {
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/routes/user.scss":
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[3]!./resources/sass/routes/user.scss":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/routes/user.scss ***!
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[3]!./resources/sass/routes/user.scss ***!
   \*******************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
@@ -23454,7 +25075,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".user-login-form {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.user-login-form .form-title {\n  text-align: center;\n  font-size: 1.5em;\n}\n.user-login-form .form-contents {\n  width: 100%;\n  max-width: 450px;\n}\n.user-login-form .form-contents .input {\n  margin-bottom: 15px;\n}\n.user-login-form .social-login {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  max-width: 450px;\n  margin: 10px 0px 30px 0px;\n}\n.user-login-form .social-login .social-title {\n  font-size: 1.5em;\n  text-align: center;\n  margin-bottom: 25px;\n}\n.user-login-form .social-login .item {\n  display: flex;\n  flex-direction: row;\n  width: 100%;\n  height: 50px;\n  box-sizing: border-box;\n  margin-bottom: 10px;\n  align-items: center;\n  border-radius: 4px;\n  cursor: pointer;\n}\n.user-login-form .social-login .item:last-child {\n  margin-bottom: 0px;\n}\n.user-login-form .social-login .item .icon {\n  width: 50px;\n  height: 30px;\n  flex-grow: 0;\n  flex-shrink: 0;\n  box-sizing: border-box;\n  border-right: 1px solid rgba(245, 245, 245, 0.3);\n  padding: 3px 0px;\n  text-align: center;\n}\n.user-login-form .social-login .item .icon svg {\n  width: 1em;\n  height: 1em;\n  display: inline-block;\n  font-size: 1.5rem;\n  flex-shrink: 0;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.user-login-form .social-login .item .text {\n  flex-grow: 1;\n  font-size: 1.1em;\n  font-weight: bold;\n  box-sizing: border-box;\n  padding-left: 15px;\n  color: #444444;\n}\n.user-login-form .social-login .item .icon,\n.user-login-form .social-login .item .text {\n  color: #ffffff;\n}\n.user-login-form .social-login .item.facebook {\n  background-color: rgba(24, 119, 242, 0.8);\n}\n.user-login-form .social-login .item.facebook:hover {\n  background-color: #1877f2;\n}\n.user-login-form .social-login .item.twitter {\n  background-color: rgba(26, 145, 218, 0.8);\n}\n.user-login-form .social-login .item.twitter:hover {\n  background-color: #1a91da;\n}\n.user-login-form .social-login .item.naver {\n  background-color: rgba(3, 199, 90, 0.8);\n}\n.user-login-form .social-login .item.naver:hover {\n  background-color: #03c75a;\n}\n.user-login-form .social-login .item.kakao {\n  background-color: rgba(255, 205, 0, 0.8);\n}\n.user-login-form .social-login .item.kakao:hover {\n  background-color: #ffcd00;\n}\n.user-login-form .social-login .item.google {\n  background-color: rgba(234, 67, 53, 0.9);\n}\n.user-login-form .social-login .item.google:hover {\n  background-color: #ea4335;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".user-login-form,\n.user-signup-form {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.user-login-form .form-title,\n.user-signup-form .form-title {\n  text-align: center;\n  font-size: 1.5rem;\n}\n.user-login-form .form-contents,\n.user-signup-form .form-contents {\n  width: 100%;\n}\n.user-login-form .social-login,\n.user-signup-form .social-login {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  margin: 10px 0px 30px 0px;\n}\n.user-login-form .social-login .item,\n.user-signup-form .social-login .item {\n  display: flex;\n  flex-direction: row;\n  width: 100%;\n  height: 50px;\n  box-sizing: border-box;\n  margin-bottom: 10px;\n  align-items: center;\n  border-radius: 4px;\n  cursor: pointer;\n}\n.user-login-form .social-login .item:last-child,\n.user-signup-form .social-login .item:last-child {\n  margin-bottom: 0px;\n}\n.user-login-form .social-login .item .icon,\n.user-signup-form .social-login .item .icon {\n  width: 50px;\n  height: 30px;\n  flex-grow: 0;\n  flex-shrink: 0;\n  box-sizing: border-box;\n  border-right: 1px solid rgba(245, 245, 245, 0.3);\n  padding: 3px 0px;\n  text-align: center;\n}\n.user-login-form .social-login .item .icon svg,\n.user-signup-form .social-login .item .icon svg {\n  width: 1em;\n  height: 1em;\n  display: inline-block;\n  font-size: 1.5rem;\n  flex-shrink: 0;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.user-login-form .social-login .item .text,\n.user-signup-form .social-login .item .text {\n  flex-grow: 1;\n  font-size: 1.1em;\n  font-weight: bold;\n  box-sizing: border-box;\n  padding-left: 15px;\n  color: #444444;\n}\n.user-login-form .social-login .item .icon svg,\n.user-signup-form .social-login .item .icon svg {\n  fill: #ffffff;\n}\n.user-login-form .social-login .item .icon,\n.user-login-form .social-login .item .text,\n.user-signup-form .social-login .item .icon,\n.user-signup-form .social-login .item .text {\n  color: #ffffff;\n}\n.user-login-form .social-login .item.facebook,\n.user-signup-form .social-login .item.facebook {\n  background-color: rgba(24, 119, 242, 0.8);\n}\n.user-login-form .social-login .item.facebook:hover,\n.user-signup-form .social-login .item.facebook:hover {\n  background-color: #1877f2;\n}\n.user-login-form .social-login .item.twitter,\n.user-signup-form .social-login .item.twitter {\n  background-color: rgba(26, 145, 218, 0.8);\n}\n.user-login-form .social-login .item.twitter:hover,\n.user-signup-form .social-login .item.twitter:hover {\n  background-color: #1a91da;\n}\n.user-login-form .social-login .item.naver,\n.user-signup-form .social-login .item.naver {\n  background-color: rgba(3, 199, 90, 0.8);\n}\n.user-login-form .social-login .item.naver .icon svg,\n.user-signup-form .social-login .item.naver .icon svg {\n  width: 0.8em;\n}\n.user-login-form .social-login .item.naver:hover,\n.user-signup-form .social-login .item.naver:hover {\n  background-color: #03c75a;\n}\n.user-login-form .social-login .item.kakao,\n.user-signup-form .social-login .item.kakao {\n  background-color: rgba(255, 205, 0, 0.8);\n}\n.user-login-form .social-login .item.kakao:hover,\n.user-signup-form .social-login .item.kakao:hover {\n  background-color: #ffcd00;\n}\n.user-login-form .social-login .item.google,\n.user-signup-form .social-login .item.google {\n  background-color: rgba(234, 67, 53, 0.9);\n}\n.user-login-form .social-login .item.google:hover,\n.user-signup-form .social-login .item.google:hover {\n  background-color: #ea4335;\n}\n\n.user-login-form .form-contents {\n  max-width: 450px;\n}\n.user-login-form .form-contents .input {\n  margin-bottom: 15px;\n}\n.user-login-form .social-login {\n  max-width: 450px;\n}\n.user-login-form .social-login h4.social-title {\n  font-size: 1.5em;\n  text-align: center;\n  margin-bottom: 25px;\n}\n\n.user-signup-form .social-login {\n  max-width: 700px;\n  margin-bottom: 50px;\n}\n.user-signup-form .social-login .accordion {\n  box-shadow: none;\n  background: linear-gradient(90deg, #e2f0fc 0%, #fff0fd 55%, #fff0e2 100%);\n}\n.user-signup-form .social-login .accordion .accordion-summary .social-title {\n  font-family: \"Noto Sans KR\";\n  font-weight: bold;\n  color: #444444;\n  font-size: 1.2em;\n}\n.user-signup-form .form-contents {\n  max-width: 700px;\n}\n.user-signup-form .form-contents .input-form .input-item {\n  margin-bottom: 20px;\n}\n.user-signup-form .form-contents .input-form .input-item.button {\n  margin-top: 40px;\n  text-align: center;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -25004,6 +26625,19 @@ var index = react__WEBPACK_IMPORTED_MODULE_0__.createContext || createReactConte
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
   \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/landing.scss":
+/*!*************************************!*\
+  !*** ./resources/sass/landing.scss ***!
+  \*************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -63135,7 +64769,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_user_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./user.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/routes/user.scss");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_3_user_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[1]!../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[2]!../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[3]!./user.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[3]!./resources/sass/routes/user.scss");
 
             
 
@@ -63144,11 +64778,11 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_user_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_3_user_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_user_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_3_user_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 
@@ -64664,6 +66298,7 @@ function valueEqual(a, b) {
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
+/******/ 			"css/landing": 0,
 /******/ 			"css/app": 0
 /******/ 		};
 /******/ 		
@@ -64712,8 +66347,9 @@ function valueEqual(a, b) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.jsx")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/landing","css/app"], () => (__webpack_require__("./resources/js/app.jsx")))
+/******/ 	__webpack_require__.O(undefined, ["css/landing","css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/landing","css/app"], () => (__webpack_require__("./resources/sass/landing.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

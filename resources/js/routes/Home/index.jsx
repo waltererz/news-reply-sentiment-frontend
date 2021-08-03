@@ -1,8 +1,9 @@
 import React from 'react';
+import Container from '../../system/Container';
 
 class Home extends React.Component {
     render() {
-        return '첫 페이지';
+        return <Container content="첫 페이지" leftSide="왼쪽" />;
     }
 }
 
