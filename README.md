@@ -1,62 +1,56 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# 뉴스댓글 여론분석 웹서비스
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 프론트엔드 개발에 사용되는 기술들
 
-## About Laravel
+J2KB 포니콘 프로젝트의 하나로 진행중인 뉴스댓글 여론분석 웹서비스는 누구나 쉽고 빠르게 원하는 뉴스의 댓글여론을 파악할 수 있도록 도와주는 서비스입니다.
+이를 구현하기 위해 파이썬을 이용한 데이터분석 등의 기술들이 사용되지만, 프론트엔드에 사용되는 기술들은 다음과 같습니다.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+-   [Apache HTTP Server 2.4](http://apache.org)
+-   [PHP (Version 8.0.9)](https://www.php.net)
+-   [Laravel 8](https://laravel.com/)
+-   [React](https://reactjs.org)
+-   [Material-UI 5](https://next.material-ui.com)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Laravel 8
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+라라벨(Laravel)은 효과적으로 대형 웹 어플리케이션을 개발하는데 사용되는 PHP 프레임워크입니다. PHP의 가장 최신 버전인 PHP 8을 공식적으로 지원하며,
+MVC(Model-View-Controller) 디자인패턴이 적용되어 있습니다.
 
-## Learning Laravel
+이 프로젝트에서는 SPA 라이브러리인 리액트(React)만으로 구현하기 어려운 SEO 최적화를 위해 라라벨이 활용됩니다.
+기본적으로 어플리케이션은 SPA 방식으로 작동하게 되지만, 페이스북 카카오톡 등 대중 SNS에서 링크가 공유되는 경우 페이지의 정보를 담고있는 메타태그를 생성하는데 라라벨이 사용됩니다.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+대부분의 프론트엔드 처리는 리액트에서 이루어질 것이지만, 라라벨은 클라이언트의 요청을 받아들이고 리액트에 넘겨주는 역할을 담당하며, 이 프로젝트에서는 라우팅 기능을 수행하기 위해 라라벨일 사용됩니다.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## React
 
-## Laravel Sponsors
+리액트는 페이스북에서 개발하고 유지보수하는 자바스크립트 라이브러리로써, SPA 방식의 웹앱을 개발하는데 쉽게 사용될 수 있습니다.
+기본적으로 클라이언트에서 작동되는 자바스크립트로 이루어져 있으므로, 데이터처리 등의 작업은 할 수 없으나, UX/UI를 구성하는데 핵심적인 역할을 담당할 수 있습니다.
+백엔드 서버에서 API 방식으로 데이터를 가져와 웹브라우저에 출력하기 위한 부분을 포함하고 있으며, 페이징을 위한 기능도 일부분 포함하고 있습니다.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### React에서 사용되는 기술들
 
-### Premium Partners
+-   [axios](https://github.com/axios/axios)
+-   [redux](https://redux.js.org)
+-   [sass](https://sass-lang.com)
+-   [laravel-mix](https://laravel-mix.com)
+-   [CKEditor 5](https://ckeditor.com)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
+### axios
 
-## Contributing
+axios는 자바스크립트에서 비동기 방식으로 HTTP 요청을 처리하는 라이브러리입니다. 이 라이브러리를 활용해 백엔드 서버에서 데이터를 가져오게 됩니다.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### redux
 
-## Code of Conduct
+리액트에서 리덕스를 사용하게 된다면 웹 어플리케이션에서 전역적으로 사용할 수 있는 상태(status)를 효율적으로 관리할 수 있으며, 리액트의 생명주기와 상관없이 어디에서든지 접근이 가능한 상태를 생성할 수 있습니다.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### sass
 
-## Security Vulnerabilities
+SASS는 스타일시트인 CSS의 전처리기로 중괄호를 사용할 수 있는 SCSS를 지원하는 등 직관적인 스타일시트 작성을 가능하게 해줍니다.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### laravel-mix
 
-## License
+라라벨에서 기본적으로 제공하는 라이브러리로써 자바스크립트 전처리기로 사용되며 여러 개의 파일을 하나의 자바스크립트 파일로 통합해주는 웹팩의 기능을 수행합니다. 자바스크립트 파일을 하나로 통합시킬 수 있다는 점에서 HTTP 요청 횟수가 줄어들어 웹 최적화에 효과적입니다.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### CKEditor 5
+
+CKEditor는 위지윅(WYSIWYG) 웹 에디터로, 사용자가 콘텐츠를 장문의 콘텐츠를 입력할 때 편리함을 제공해주는 소프트웨어입니다. 리액트에서 간편하게 사용할 수 있습니다.
