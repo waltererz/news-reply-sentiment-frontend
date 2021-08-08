@@ -24265,6 +24265,12 @@ var Signin = /*#__PURE__*/function (_React$Component) {
   _createClass(Signin, [{
     key: "render",
     value: function render() {
+      var SignInKakao = function SignInKakao() {
+        Kakao.Auth.authorize({
+          redirectUri: 'http://newsreply.erzsphilos.com/oauth/kakao'
+        });
+      };
+
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         className: "user-login-form",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {
@@ -24346,6 +24352,7 @@ var Signin = /*#__PURE__*/function (_React$Component) {
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
             className: "item kakao",
+            onClick: SignInKakao,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
               className: "icon",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
@@ -24678,6 +24685,61 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/services/Cookie/index.jsx":
+/*!************************************************!*\
+  !*** ./resources/js/services/Cookie/index.jsx ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getCookie": () => (/* binding */ getCookie)
+/* harmony export */ });
+var getCookie = function getCookie(name) {
+  var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+  return value ? decodeURIComponent(value[2]) : null;
+};
+
+/***/ }),
+
+/***/ "./resources/js/services/Kakao/index.jsx":
+/*!***********************************************!*\
+  !*** ./resources/js/services/Kakao/index.jsx ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "check": () => (/* binding */ check)
+/* harmony export */ });
+/* harmony import */ var _Cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Cookie */ "./resources/js/services/Cookie/index.jsx");
+
+/**
+ * 카카오로그인 토큰 생성여부를 확인하여, 액세스 토큰을 생성
+ */
+
+var check = function check() {
+  var kakao_token = (0,_Cookie__WEBPACK_IMPORTED_MODULE_0__.getCookie)('kakao_access_token');
+
+  if (kakao_token) {
+    Kakao.Auth.setAccessToken(kakao_token);
+    Kakao.Auth.getStatusInfo(function (_ref) {
+      var status = _ref.status;
+
+      if (status === 'connected') {
+        console.log('카카오로그인 완료 : ' + Kakao.Auth.getAccessToken());
+      } else {
+        Kakao.Auth.setAccessToken(null);
+        console.log('유효하지 않은 카카오로그인 토큰');
+      }
+    });
+  }
+};
+
+/***/ }),
+
 /***/ "./resources/js/system/App/index.jsx":
 /*!*******************************************!*\
   !*** ./resources/js/system/App/index.jsx ***!
@@ -24690,10 +24752,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Layout */ "./resources/js/system/Layout/index.jsx");
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../routes */ "./resources/js/routes/index.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _services_Kakao__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/Kakao */ "./resources/js/services/Kakao/index.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24721,7 +24784,19 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+/**
+ * 각종 소셜로그인 기능에 따라 서비스에 로그인되었는지 확인 (5초마다)
+ */
 
+
+
+
+var checkOAuthTokens = function checkOAuthTokens() {
+  _services_Kakao__WEBPACK_IMPORTED_MODULE_3__.check();
+};
+
+checkOAuthTokens();
+setInterval(checkOAuthTokens, 1000);
 
 var App = /*#__PURE__*/function (_React$Component) {
   _inherits(App, _React$Component);
@@ -24737,13 +24812,13 @@ var App = /*#__PURE__*/function (_React$Component) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Layout__WEBPACK_IMPORTED_MODULE_1__.default, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Switch, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Layout__WEBPACK_IMPORTED_MODULE_1__.default, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Switch, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
             exact: true,
             path: "/",
             component: _routes__WEBPACK_IMPORTED_MODULE_2__.Home
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
             path: "/user",
             component: _routes__WEBPACK_IMPORTED_MODULE_2__.User
           })]

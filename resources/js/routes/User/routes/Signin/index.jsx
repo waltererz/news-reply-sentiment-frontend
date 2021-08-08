@@ -7,6 +7,12 @@ import GoogleIcon from '@material-ui/icons/Google';
 
 class Signin extends React.Component {
     render() {
+        const SignInKakao = () => {
+            Kakao.Auth.authorize({
+                redirectUri: 'http://newsreply.erzsphilos.com/oauth/kakao',
+            });
+        };
+
         return (
             <div className="user-login-form">
                 <h4 className="form-title">회원 로그인</h4>
@@ -66,7 +72,7 @@ class Signin extends React.Component {
                         </div>
                         <div className="text">네이버 계정으로 로그인</div>
                     </div>
-                    <div className="item kakao">
+                    <div className="item kakao" onClick={SignInKakao}>
                         <div className="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M12,.744C5.851.744.25,4.828.25,9.866c0,3.132,2.034,5.9,5.132,7.537l-1.3,4.785a.481.481,0,0,0,.736.516l5.714-3.79c.482.047.973.073,1.471.073,6.49,0,11.75-4.083,11.75-9.121S18.49.744,12,.744" />
