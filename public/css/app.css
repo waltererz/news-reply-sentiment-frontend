@@ -13,23 +13,8 @@ a {
   color: initial;
 }
 
-.j2kb .header-navigation {
-  padding: 0px 10px;
-  background-color: #ffffff;
-  border-bottom: 1px solid #dddddd;
-  box-shadow: none;
-  color: #333333;
-}
-.j2kb .header-navigation .header-title {
-  flex-grow: 1;
-  font-family: "Noto Sans KR";
-  font-weight: bold;
-  font-size: 1.3em;
-}
-
 .j2kb .j2kb-container {
   margin-top: calc(65px + 10px);
-  padding: 0px;
 }
 .j2kb .j2kb-container .inner-container {
   flex-direction: row;
