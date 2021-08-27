@@ -5,6 +5,7 @@ const initialStates = {
     title: null,
     route: config('app.route.home'),
     uri: '/',
+    mobileDrawerOpen: false,
 };
 
 function app(state = initialStates, action) {
@@ -17,6 +18,9 @@ function app(state = initialStates, action) {
             break;
         case reduxConstants.app.uri:
             return { ...state, uri: action.state };
+            break;
+        case reduxConstants.app.mobileDrawerOpen:
+            return { ...state, mobileDrawerOpen: action.state };
             break;
     }
 

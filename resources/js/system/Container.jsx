@@ -1,6 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemButton from '@material-ui/core/ListItemButton';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+import DashboardRoundedIcon from '@material-ui/icons/DashboardRounded';
 import config from '../config';
 
 export default function Container({ submenus, children }) {
@@ -21,48 +29,60 @@ export default function Container({ submenus, children }) {
 
                     '& .MuiPaper-root': {
                         display: 'flex',
-                        backgroundColor: config('templete.palette.bgColor.main'),
-                        border: '0px',
-                        zIndex: config('templete.zIndex.drawer'),
-                        boxSizing: 'border-box',
-                        transition:
-                            'transform 500ms cubic-bezier(0, 0, 0.2, 1) 0ms, height 500ms cubic-bezier(0, 0, 0.2, 1) 0ms',
-
                         width: config('templete.width.drawer.desktop'),
+                        height: '100%',
+                        backgroundColor: '#ffffff',
+                        border: '0px',
+                        zIndex: config('templete.zIndex.desktopDrawer'),
+                        boxSizing: 'border-box',
+                        boxShadow: config('templete.boxShadow.1'),
 
-                        height: {
-                            md:
-                                'calc(100vh - ' +
-                                config('templete.height.headerFixed.desktop') +
-                                ')',
-                        },
-
-                        marginTop: {
+                        paddingTop: {
                             md:
                                 'calc(' +
-                                config('templete.height.headerFixed.desktop') +
+                                config('templete.height.headerAppBar.desktop') +
                                 ' + 10px)',
                         },
-
-                        marginLeft: '10px',
-
-                        paddingRight: '20px',
                     },
                 }}
             >
-                {submenus}
+                <List
+                    sx={{
+                        width: '100%',
+                        backgroundColor: '#ffffff',
+
+                        '& .MuiListItemButton-root': {
+                            borderRadius: '5px',
+                        },
+                    }}
+                >
+                    {typeof submenus == 'object'
+                        ? submenus.map((item, index) => {
+                              return (
+                                  <ListItem key={`submenu-${index}`}>
+                                      <ListItemButton component={Link} to={item.path}>
+                                          <ListItemAvatar>
+                                              <Avatar>{item.icon}</Avatar>
+                                          </ListItemAvatar>
+                                          <ListItemText primary={item.name} />
+                                      </ListItemButton>
+                                  </ListItem>
+                              );
+                          })
+                        : ''}
+                </List>
             </Drawer>
             <Grid
                 item
                 sx={{
-                    width: '320px',
+                    width: config('templete.width.drawer.desktop'),
                     paddingRight: '20px',
                     flexGrow: 0,
+                    boxSizing: 'border-box',
                     display: {
                         xs: 'none',
                         md: 'block',
                     },
-                    boxSizing: 'border-box',
                 }}
             ></Grid>
             <Grid

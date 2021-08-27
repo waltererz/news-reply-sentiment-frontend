@@ -3,7 +3,8 @@ const _config = {
     route: {
         default: 1,
         home: 2,
-        user: 3,
+        analytics: 3,
+        user: 4,
     },
 }
 

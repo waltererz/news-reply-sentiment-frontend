@@ -1,10 +1,12 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 import DesignServicesRoundedIcon from '@material-ui/icons/DesignServicesRounded';
 import BubbleChartRoundedIcon from '@material-ui/icons/BubbleChartRounded';
 import Container from '../system/Container';
+import * as Page from './app/pages';
 import * as common from '../services/common';
 
-export default function Home() {
+export default function App() {
     common.init();
 
     return (
@@ -22,7 +24,10 @@ export default function Home() {
                 },
             ]}
         >
-            첫 페이지
+            <Switch>
+                <Route exact path="/app" component={Page.Home} />
+                <Route path="/app/introduction" component={Page.Introduction} />
+            </Switch>
         </Container>
     );
 }

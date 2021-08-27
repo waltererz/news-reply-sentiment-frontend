@@ -1,11 +1,11 @@
 const _config = {
     palette: {
         primary: {
-            main: '#46437a',
+            main: '#6a02ff',
         },
 
         secondary: {
-            main: '#ffffff',
+            main: '#005dff',
         },
 
         bgColor: {
@@ -52,19 +52,15 @@ const _config = {
 
         drawer: {
             desktop: '320px',
-            mobile: '320px',
+            mobile: '280px',
         }
     },
 
     height: {
-        headerFixed: {
-            desktop: '48px',
-            mobile: '48px',
-        },
-
-        bottomNavigation: {
+        headerAppBar: {
+            desktop: '60px',
             mobile: '50px',
-        }
+        },
     },
 
     margin: {
@@ -75,10 +71,9 @@ const _config = {
     },
 
     zIndex: {
-        drawer: 900,
-        header: 1190,
-        headerNavigation: 1180,
-        bottomNavigation: 1190,
+        desktopDrawer: 900,
+        headerAppBar: 1190,
+        mobileNavigation: 1190,
     },
 
     border: {
@@ -91,10 +86,12 @@ const _config = {
     },
 
     boxShadow: {
-        1: '0 1px 4px 0 rgba(0, 0, 0, 0.15)',
+        1: '0 2px 5px 1px rgba(0, 0, 0, 0.15)',
+        2: '0 2px 5px 1px rgba(0, 0, 0, 0.30)',
     },
 
     gradient: {
+        primary: 'linear-gradient(90deg, rgba(106,2,255,1) 0%, rgba(0,93,255,1) 100%)',
         secondary: 'linear-gradient(0deg, rgba(70, 67, 122, 1) 0%, rgba(73, 70, 128, 1) 35%, rgba(73, 70, 128, 1) 65%, rgba(70, 67, 122, 1) 100%)',
         silver: 'linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(247, 247, 247, 1) 40%, rgba(254, 254, 254, 1) 100%)',
     },
