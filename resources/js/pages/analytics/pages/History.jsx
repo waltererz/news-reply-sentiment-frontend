@@ -33,7 +33,7 @@ export default function History() {
 
     return (
         <Paper>
-            <Grid container>
+            <Grid container rowSpacing={10}>
                 {data.map((item, index) => {
                     return (
                         <Grid
@@ -49,7 +49,16 @@ export default function History() {
                                 flexDirection: 'column',
                             }}
                         >
-                            <PieChart width={400} height={400} key={`graph-${index}`}>
+                            <Box
+                                sx={{
+                                    fontSize: '1.1rem',
+                                    fontWeight: 'bold',
+                                    fontFamily: config('templete.fontFamily.1'),
+                                }}
+                            >
+                                뉴스기사 여론동향 {index + 1}
+                            </Box>
+                            <PieChart width={400} height={300} key={`graph-${index}`}>
                                 <Pie
                                     data={item}
                                     cx="50%"
@@ -73,6 +82,7 @@ export default function History() {
                                     marginTop: '20px',
                                     fontSize: '0.8rem',
                                     fontFamily: config('templete.fontFamily.1'),
+                                    color: '#cccccc',
                                 }}
                             >
                                 최종 분석일: 2021년 00월 00일

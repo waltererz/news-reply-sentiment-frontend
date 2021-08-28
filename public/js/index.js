@@ -667,12 +667,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ History)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var recharts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! recharts */ "./node_modules/recharts/es6/chart/PieChart.js");
-/* harmony import */ var recharts__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! recharts */ "./node_modules/recharts/es6/polar/Pie.js");
-/* harmony import */ var recharts__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! recharts */ "./node_modules/recharts/es6/component/Cell.js");
-/* harmony import */ var recharts__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! recharts */ "./node_modules/recharts/es6/component/Legend.js");
+/* harmony import */ var recharts__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! recharts */ "./node_modules/recharts/es6/chart/PieChart.js");
+/* harmony import */ var recharts__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! recharts */ "./node_modules/recharts/es6/polar/Pie.js");
+/* harmony import */ var recharts__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! recharts */ "./node_modules/recharts/es6/component/Cell.js");
+/* harmony import */ var recharts__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! recharts */ "./node_modules/recharts/es6/component/Legend.js");
 /* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/Grid/Grid.js");
-/* harmony import */ var _material_ui_core_Box__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core/Box */ "./node_modules/@material-ui/core/Box/Box.js");
+/* harmony import */ var _material_ui_core_Box__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/Box */ "./node_modules/@material-ui/core/Box/Box.js");
 /* harmony import */ var _components_Paper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../components/Paper */ "./resources/js/components/Paper.jsx");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../config */ "./resources/js/config/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
@@ -720,6 +720,7 @@ function History() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_Paper__WEBPACK_IMPORTED_MODULE_1__.default, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__.default, {
       container: true,
+      rowSpacing: 10,
       children: data.map(function (item, index) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__.default, {
           item: true,
@@ -732,10 +733,17 @@ function History() {
             alignItems: 'center',
             flexDirection: 'column'
           },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(recharts__WEBPACK_IMPORTED_MODULE_5__.PieChart, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core_Box__WEBPACK_IMPORTED_MODULE_5__.default, {
+            sx: {
+              fontSize: '1.1rem',
+              fontWeight: 'bold',
+              fontFamily: (0,_config__WEBPACK_IMPORTED_MODULE_2__.default)('templete.fontFamily.1')
+            },
+            children: ["\uB274\uC2A4\uAE30\uC0AC \uC5EC\uB860\uB3D9\uD5A5 ", index + 1]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(recharts__WEBPACK_IMPORTED_MODULE_6__.PieChart, {
             width: 400,
-            height: 400,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(recharts__WEBPACK_IMPORTED_MODULE_6__.Pie, {
+            height: 300,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(recharts__WEBPACK_IMPORTED_MODULE_7__.Pie, {
               data: item,
               cx: "50%",
               cy: "50%",
@@ -744,16 +752,17 @@ function History() {
               fill: "#8884d8",
               dataKey: "value",
               children: item.map(function (entry, subindex) {
-                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(recharts__WEBPACK_IMPORTED_MODULE_7__.Cell, {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(recharts__WEBPACK_IMPORTED_MODULE_8__.Cell, {
                   fill: colors[subindex % colors.length]
                 }, "cell-".concat(index, "-").concat(subindex));
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(recharts__WEBPACK_IMPORTED_MODULE_8__.Legend, {})]
-          }, "graph-".concat(index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_Box__WEBPACK_IMPORTED_MODULE_9__.default, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(recharts__WEBPACK_IMPORTED_MODULE_9__.Legend, {})]
+          }, "graph-".concat(index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_Box__WEBPACK_IMPORTED_MODULE_5__.default, {
             sx: {
               marginTop: '20px',
               fontSize: '0.8rem',
-              fontFamily: (0,_config__WEBPACK_IMPORTED_MODULE_2__.default)('templete.fontFamily.1')
+              fontFamily: (0,_config__WEBPACK_IMPORTED_MODULE_2__.default)('templete.fontFamily.1'),
+              color: '#cccccc'
             },
             children: "\uCD5C\uC885 \uBD84\uC11D\uC77C: 2021\uB144 00\uC6D4 00\uC77C"
           })]
