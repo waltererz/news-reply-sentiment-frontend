@@ -78,6 +78,7 @@ export default function Container({ submenus, children }) {
                     width: config('templete.width.drawer.desktop'),
                     paddingRight: '20px',
                     flexGrow: 0,
+                    flexShrink: 0,
                     boxSizing: 'border-box',
                     display: {
                         xs: 'none',
@@ -90,6 +91,7 @@ export default function Container({ submenus, children }) {
                 sx={{
                     flexGrow: 1,
                     flexShrink: 1,
+                    overflowX: 'auto',
                     boxSizing: 'border-box',
                 }}
             >

@@ -1,40 +1,86 @@
-import {
-    LineChart,
-    Line,
-    XAxis,
-    YAxis,
-    Tooltip,
-    CartesianGrid,
-    Label,
-    LabelList,
-    Brush,
-} from 'recharts';
+import React from 'react';
+import { PieChart, Pie, Legend, Cell } from 'recharts';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Paper from '../../../components/Paper';
+import config from '../../../config';
 
 export default function History() {
+    const colors = ['#00c7a3', '#bb0000'];
+
     const data = [
-        { name: 'Page A', uv: 300, pv: 2600, amt: 3400 },
-        { name: 'Page B', uv: 400, pv: 4367, amt: 6400 },
-        { name: 'Page C', uv: 300, pv: 1398, amt: 2400 },
-        { name: 'Page D', uv: 200, pv: 9800, amt: 2400 },
-        { name: 'Page E', uv: 278, pv: 3908, amt: 2400 },
-        { name: 'Page F', uv: 189, pv: 4800, amt: 2400 },
-        { name: 'Page G', uv: 189, pv: 4800, amt: 2400 },
+        [
+            { name: '긍정적', value: 400 },
+            { name: '부정적', value: 300 },
+        ],
+        [
+            { name: '긍정적', value: 200 },
+            { name: '부정적', value: 300 },
+        ],
+        [
+            { name: '긍정적', value: 100 },
+            { name: '부정적', value: 300 },
+        ],
+        [
+            { name: '긍정적', value: 600 },
+            { name: '부정적', value: 300 },
+        ],
+        [
+            { name: '긍정적', value: 10000 },
+            { name: '부정적', value: 300 },
+        ],
     ];
 
     return (
-        <LineChart width={400} height={400} data={data} syncId="test">
-            <CartesianGrid stroke="#f5f5f5" fill="#e6e6e6" />
-            <XAxis type="number" dataKey="pv" height={40} label="레이블">
-                <Label value="x" position="insideBottom" />
-            </XAxis>
-            <YAxis type="number" unit="%" width={80}>
-                <Label value="y" position="insideLeft" angle={90} />
-            </YAxis>
-            <Tooltip trigger="click" />
-            <Line key="uv" type="monotone" dataKey="uv" stroke="#ff7300" strokeDasharray="3 3">
-                <LabelList position="bottom" offset={10} dataKey="name" />
-            </Line>
-            <Brush dataKey="name" height={30} />
-        </LineChart>
+        <Paper>
+            <Grid container>
+                {data.map((item, index) => {
+                    return (
+                        <Grid
+                            item
+                            xs={12}
+                            md={6}
+                            xl={4}
+                            key={`graph-${index}`}
+                            sx={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                flexDirection: 'column',
+                            }}
+                        >
+                            <PieChart width={400} height={400} key={`graph-${index}`}>
+                                <Pie
+                                    data={item}
+                                    cx="50%"
+                                    cy="50%"
+                                    labelLine={false}
+                                    outerRadius={80}
+                                    fill="#8884d8"
+                                    dataKey="value"
+                                >
+                                    {item.map((entry, subindex) => (
+                                        <Cell
+                                            key={`cell-${index}-${subindex}`}
+                                            fill={colors[subindex % colors.length]}
+                                        />
+                                    ))}
+                                </Pie>
+                                <Legend />
+                            </PieChart>
+                            <Box
+                                sx={{
+                                    marginTop: '20px',
+                                    fontSize: '0.8rem',
+                                    fontFamily: config('templete.fontFamily.1'),
+                                }}
+                            >
+                                최종 분석일: 2021년 00월 00일
+                            </Box>
+                        </Grid>
+                    );
+                })}
+            </Grid>
+        </Paper>
     );
 }

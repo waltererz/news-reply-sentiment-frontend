@@ -20,7 +20,6 @@ export default function Layout({ children }) {
                 container
                 sx={{
                     flexWrap: 'nowrap',
-                    height: '3000px',
 
                     paddingTop: {
                         xs: 'calc(' + config('templete.height.headerAppBar.mobile') + ' + 10px)',

@@ -15,6 +15,8 @@
     @yield('body')
     <div id="app" class="j2kb"></div>
     @yield('footer')
+    <script defer src="{{ mix('/js/manifest.js') }}" type="text/javascript"></script>
+    <script defer src="{{ mix('/js/vendor.js') }}" type="text/javascript"></script>
     <script defer src="{{ mix('/js/index.js') }}" type="text/javascript"></script>
 </body>
 

@@ -30,8 +30,9 @@ const navigationLinks = [
     },
     {
         name: '문의하기',
-        path: '/contact',
+        path: 'https://newsreply.channel.io',
         slug: 'contact',
+        standalone: true,
     },
 ];
 

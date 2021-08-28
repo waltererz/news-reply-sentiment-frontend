@@ -1,5 +1,7 @@
 {
-    "/js/index.js": "/js/index.js?id=fbe6951e60fb340ae768",
-    "/js/landing.js": "/js/landing.js?id=8c6ebcf30aa42208875b",
-    "/css/landing.css": "/css/landing.css?id=505640c2a961489e2c72"
+    "/js/index.js": "/js/index.js?id=f25481ce76f5126c92c5",
+    "/js/landing.js": "/js/landing.js?id=7d2f0abbe1adfa1169ee",
+    "/js/manifest.js": "/js/manifest.js?id=216e83296e8f1e2707ad",
+    "/css/landing.css": "/css/landing.css?id=505640c2a961489e2c72",
+    "/js/vendor.js": "/js/vendor.js?id=92f96ddfcf262d5e9e13"
 }
